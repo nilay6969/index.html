@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Quiet Rose — For Twiii</title>
+
+<!-- ===============================
+     GOOGLE FONTS
+================================ -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==========================================================
+   1. RESET & ROOT VARIABLES
+========================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-main: #0a0a12;
+  --bg-soft: #12121c;
+  --rose-dark: #7d1f3a;
+  --rose-main: #b03060;
+  --rose-light: #ff4d6d;
+  --text-main: #eaeaf0;
+  --text-muted: rgba(234,234,240,0.65);
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.15);
+  --blur-strong: blur(22px);
+  --blur-soft: blur(12px);
+  --shadow-heavy: 0 40px 120px rgba(0,0,0,0.7);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+
+/* ==========================================================
+   2. GLOBAL BODY
+========================================================== */
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #12121c, #050509);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   3. TYPOGRAPHY
+========================================================== */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--rose-light);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   4. SECTIONS & LAYOUT
+========================================================== */
+section {
+  min-height: 100vh;
+  padding: 140px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================
+   5. GLASS CARD SYSTEM
+========================================================== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-strong);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-heavy);
+  padding: 56px;
+}
+
+/* ==========================================================
+   6. BUTTON SYSTEM
+========================================================== */
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 16px 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--rose-main), var(--rose-light));
+  color: white;
+  border: none;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(255,77,109,0.45);
+  transition: all 0.4s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(255,77,109,0.65);
+}
+
+/* ==========================================================
+   7. HERO SECTION
+========================================================== */
+.hero {
+  background: radial-gradient(circle at center, #151525, #050509);
+}
+
+.hero img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  filter: saturate(1.1) contrast(1.05);
+  animation: breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* ==========================================================
+   8. CONFESSION SECTION
+========================================================== */
+.confession {
+  background: linear-gradient(180deg, #08080f, #0c0c16);
+}
+
+/* ==========================================================
+   9. PROMISE GRID
+========================================================== */
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 40px;
+}
+
+.promise {
+  height: 220px;
+  position: relative;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.promise-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.9s ease;
+  transform-style: preserve-3d;
+}
+
+.promise.flip .promise-inner {
+  transform: rotateY(180deg);
+}
+
+.promise-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-soft);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  backface-visibility: hidden;
+}
+
+.promise-face.back {
+  transform: rotateY(180deg);
+}
+
+/* ==========================================================
+   10. FINAL SECTION
+========================================================== */
+.final {
+  background: radial-gradient(circle at center, #1a1a28, #050509);
+  text-align: center;
+}
+
+/* ==========================================================
+   11. RESPONSIVE
+========================================================== */
+@media(max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+  .promise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===============================
+   SCROLL REVEAL SYSTEM
+================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: .2s; }
+.reveal-delay-2 { transition-delay: .4s; }
+.reveal-delay-3 { transition-delay: .6s; }
+
+/* ===============================
+   MEMORY TIMELINE
+================================ */
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--rose-main),
+    transparent
+  );
+}
+
+.memory {
+  position: relative;
+  width: 50%;
+  padding: 40px;
+}
+
+.memory.left { left: 0; text-align: right; }
+.memory.right { left: 50%; }
+
+.memory-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-soft);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  border: 1px solid var(--glass-border);
+}
+
+@media(max-width: 900px) {
+  .timeline::before { left: 10px; }
+  .memory {
+    width: 100%;
+    left: 0;
+    padding-left: 40px;
+    text-align: left;
+  }
+}
+
+/* ===============================
+   HIDDEN MESSAGE
+================================ */
+
+.hidden-message {
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: rgba(0,0,0,0.4);
+  text-align: center;
+  cursor: pointer;
+}
+
+.hidden-message p {
+  opacity: 0.4;
+  transition: opacity .5s ease;
+}
+
+.hidden-message.revealed p {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===============================
+     HERO
+================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="glass">
+      <h1>For Twiii</h1>
+      <p>
+        This is not a message.<br>
+        Not a performance.<br><br>
+        This is what happens when words are not enough,
+        so time is spent instead.
+      </p>
+      <button class="btn">Read Slowly</button>
+    </div>
+    <img src="https://i.imgur.com/bLt288p.png">
+  </div>
+</section>
+
+<!-- ===============================
+     CONFESSION
+================================ -->
+<section class="confession">
+  <div class="container">
+    <div class="glass">
+      <h2>Something I Rarely Say</h2>
+      <p>
+        I don’t always know how to speak when it matters.<br><br>
+        Sometimes I pause too long.<br>
+        Sometimes I choose silence because I’m afraid
+        of saying something that can’t be taken back.<br><br>
+        This is me choosing to speak anyway.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     PROMISES
+================================ -->
+<section>
+  <div class="container">
+    <div>
+      <h2>Promises</h2>
+      <p>Touch them slowly.</p>
+    </div>
+
+    <div class="promise-grid">
+      <div class="promise" onclick="flip(this)">
+        <div class="promise-inner">
+          <div class="promise-face">I promise to notice.</div>
+          <div class="promise-face back">When you say “I’m fine” but mean the opposite.</div>
+        </div>
+      </div>
+
+      <div class="promise" onclick="flip(this)">
+        <div class="promise-inner">
+          <div class="promise-face">I promise to choose you.</div>
+          <div class="promise-face back">Even when I’m still learning how.</div>
+        </div>
+      </div>
+
+      <div class="promise" onclick="flip(this)">
+        <div class="promise-inner">
+          <div class="promise-face">I promise to protect.</div>
+          <div class="promise-face back">Your softness, not your silence.</div>
+        </div>
+      </div>
+
+      <div class="promise" onclick="flip(this)">
+        <div class="promise-inner">
+          <div class="promise-face">I promise to grow.</div>
+          <div class="promise-face back">So you never walk ahead alone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="glass reveal">
+      <h2>Moments I Keep</h2>
+      <p>
+        Not big events.<br>
+        Just the quiet ones that stayed.
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="memory left reveal reveal-delay-1">
+        <div class="memory-card">
+          <span>First Real Silence</span>
+          <p>
+            When nothing needed to be said,
+            and somehow that felt safe.
+          </p>
+        </div>
+      </div>
+
+      <div class="memory right reveal reveal-delay-2">
+        <div class="memory-card">
+          <span>The Late Replies</span>
+          <p>
+            When time slipped,
+            but care never did.
+          </p>
+        </div>
+      </div>
+
+      <div class="memory left reveal reveal-delay-3">
+        <div class="memory-card">
+          <span>Unsent Messages</span>
+          <p>
+            The words I wrote,
+            then erased,
+            because they mattered too much.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     FINAL
+================================ -->
+<section class="final">
+  <div class="glass">
+    <h2>One Day</h2>
+    <p>
+      This won’t be a screen.<br>
+      Or a design.<br><br>
+      It’ll be me —<br>
+      hoping I’ve learned how to love you better.<br><br>
+      <strong>— from a guddiyaa 🧿</strong>
+    </p>
+  </div>
+</section>
+
+<script>
+function flip(el){
+  el.classList.toggle("flip");
+}
+/* ===============================
+   SCROLL REVEAL
+================================ */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => observer.observe(el));
+
+/* ===============================
+   HIDDEN MESSAGE
+================================ */
+
+function revealSecret(el) {
+  el.classList.toggle("revealed");
+}
+</script>
+
+</body>
+</html>
